@@ -51,7 +51,7 @@ public class KafkaProducerExample {
         KafkaProducerExample kafkaProducerExample = null;
         try {
             kafkaProducerExample = new KafkaProducerExample();
-            for (int i = 0; i < 100; i++) {
+            for (int i = 0; i < 1110; i++) {
                 kafkaProducerExample.sendWithoutCallback("test", Integer.toString(i), Integer.toString(i));
             }
 
