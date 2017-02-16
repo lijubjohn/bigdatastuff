@@ -44,6 +44,12 @@ public class WordCount {
         }
     }
 
+    /**
+     * This is local version of wordcount
+     * usage eg.for args /Users/liju/Documents/softwares/hadoop-2.7.3/README.txt  /tmp/output/
+     * @param args
+     * @throws Exception
+     */
     public static void main(String[] args) throws Exception {
         Configuration conf = new Configuration();
         String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
