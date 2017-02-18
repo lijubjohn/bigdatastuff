@@ -21,13 +21,11 @@
             <artifactId>hadoop-distcp</artifactId>
             <version>2.6.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.hadoop/hadoop-mapreduce-client-core -->
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-mapreduce-client-core</artifactId>
+            <version>2.6.0</version>
+        </dependency>
     </dependencies>
-
-    <repositories>
-        <repository>
-            <id>my-repo1</id>
-            <name>hadoop repo</name>
-            <url>https://mvnrepository.com/artifact/org.apache.hadoop/hadoop</url>
-        </repository>
-    </repositories>
 </project>
