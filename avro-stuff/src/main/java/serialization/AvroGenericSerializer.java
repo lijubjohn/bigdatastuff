@@ -22,10 +22,10 @@ public class AvroGenericSerializer {
     private final DecoderFactory decoderFactory = DecoderFactory.get();
 
     /**
-     *
+     * Method to serialize
      * @param schema - schema of the object
      * @param genericArray  - top level element type corresponding to schema
-     *         This can be genericArray or GenericRecord as per schema
+     *         This can be genericArray or GenericRecord or anything else as per schema
      * @return
      */
     public byte[] serialize(Schema schema, GenericArray genericArray) {
@@ -42,6 +42,12 @@ public class AvroGenericSerializer {
         }
     }
 
+    /**
+     * Method to deserialize
+     * @param schema - avro schema
+     * @param array - serialized byte[]
+     * @return
+     */
     public GenericArray deserialize(Schema schema, byte[] array) {
         try {
             GenericDatumReader<GenericArray> genericDatumReader = new GenericDatumReader<>(schema);
@@ -52,9 +58,42 @@ public class AvroGenericSerializer {
         }
     }
 
+    /**
+     * Method to create avro object , GenericArray in this case from the Java object
+     * @param users  - Java object to be serialized
+     * @param schema - avro schema of the given java object
+     * @return GenericArray - avro object corresponding to schema
+     */
+    private static GenericArray createGenericArray(List<User> users,Schema schema) {
+
+        GenericArray<GenericRecord> avroArray = new GenericData.Array<>(users.size(), schema );
+
+        for (User user : users) {
+            GenericRecord genericRecord = new GenericData.Record(schema.getElementType());
+            genericRecord.put("name",user.name);
+            genericRecord.put("gender",user.gender);
+            genericRecord.put("hgt",user.hgt);
+            avroArray.add(genericRecord);
+        }
+        return avroArray;
+    }
+
+    final static class User {
+        String name;
+        String gender;
+        float hgt;
+
+        public User(String name, String gender, float hgt) {
+            this.name = name;
+            this.gender = gender;
+            this.hgt = hgt;
+        }
+    }
+
 
     public static void main(String[] args) {
         AvroGenericSerializer genericSerializer = new AvroGenericSerializer();
+        //language=JSON
         String schema  = "{\"namespace\":\"com.test\",\"name\":\"users\",\"type\":\"array\",\"items\":{\"name\":\"user\",\"type\":\"record\",\"fields\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"gender\",\"type\":\"string\"},{\"name\":\"hgt\",\"type\":\"float\"}]}}";
         final Schema avroSchema = new Schema.Parser().parse(schema);
 
@@ -76,30 +115,6 @@ public class AvroGenericSerializer {
         System.out.println("after deserialization : " + deserialized.toString());
     }
 
-    private static GenericArray createGenericArray(List<User> users,Schema schema) {
-
-        GenericArray<GenericRecord> avroArray = new GenericData.Array<>(users.size(), schema );
-
-        for (User user : users) {
-            GenericRecord genericRecord = new GenericData.Record(schema.getElementType());
-            genericRecord.put("name",user.name);
-            genericRecord.put("gender",user.gender);
-            genericRecord.put("hgt",user.hgt);
-            avroArray.add(genericRecord);
-        }
-        return avroArray;
-    }
-
 }
 
-final class User {
-    String name;
-    String gender;
-    float hgt;
 
-    public User(String name, String gender, float hgt) {
-        this.name = name;
-        this.gender = gender;
-        this.hgt = hgt;
-    }
-}

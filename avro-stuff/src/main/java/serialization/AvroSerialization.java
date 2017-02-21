@@ -16,6 +16,8 @@ import example.avro.User;
  * Created by liju on 2/16/17.
  *
  * Example showing avro serialization and deserialization
+ *
+ * Run the maven generate-sources to create User pojo from avro schema
  */
 public class AvroSerialization {
 
@@ -24,6 +26,9 @@ public class AvroSerialization {
         deserialize();
     }
 
+    /**
+     * Method to serialize
+     */
     private static void serialize() {
         try {
             // Serialize user1, user2 etc to disk
@@ -53,6 +58,9 @@ public class AvroSerialization {
         }
     }
 
+    /**
+     * Method to deserialize
+     */
     private static void deserialize() {
         try {
             // Deserialize Users from disk
@@ -64,11 +72,10 @@ public class AvroSerialization {
                 // allocating and garbage collecting many objects for files with
                 // many items.
                 user = dataFileReader.next(user);
-                System.out.println(user);
+                System.out.println("deserialized : "+user);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }
