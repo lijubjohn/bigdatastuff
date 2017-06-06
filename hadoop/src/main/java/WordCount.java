@@ -46,7 +46,7 @@ public class WordCount {
 
     /**
      * This is local version of wordcount
-     * usage eg.for args /Users/liju/Documents/softwares/hadoop-2.7.3/README.txt  /tmp/output/
+     * usage eg.for args /bigdatastuff/hadoop/src/main/resources/wordcount.txt  /tmp/output/
      * @param args
      * @throws Exception
      */
@@ -67,8 +67,10 @@ public class WordCount {
         for (int i = 0; i < otherArgs.length - 1; ++i) {
             FileInputFormat.addInputPath(job, new Path(otherArgs[i]));
         }
-        FileOutputFormat.setOutputPath(job,
-                new Path(otherArgs[otherArgs.length - 1]));
+
+        final Path out = new Path(otherArgs[otherArgs.length - 1]);
+        FileOutputFormat.setOutputPath(job, out);
+        out.getFileSystem(conf).delete(out,true);
         System.exit(job.waitForCompletion(true) ? 0 : 1);
     }
 }

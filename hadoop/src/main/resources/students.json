@@ -1,0 +1,15 @@
+{"student_id":1,"subject":"math","marks":60}
+{"student_id":2,"subject":"math","marks":60}
+{"student_id":3,"subject":"math","marks":80}
+{"student_id":4,"subject":"math","marks":85}
+{"student_id":5,"subject":"math","marks":39}
+{"student_id":1,"subject":"eng","marks":49}
+{"student_id":2,"subject":"eng","marks":23}
+{"student_id":3,"subject":"eng","marks":55}
+{"student_id":4,"subject":"eng","marks":60}
+{"student_id":5,"subject":"eng","marks":60}
+{"student_id":1,"subject":"history","marks":55}
+{"student_id":2,"subject":"history","marks":50}
+{"student_id":3,"subject":"history","marks":57}
+{"student_id":4,"subject":"history","marks":43}
+{"student_id":5,"subject":"history","marks":83}
