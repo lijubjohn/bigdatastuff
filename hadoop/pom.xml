@@ -50,6 +50,15 @@
             <version>1.8.2</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.apache.mrunit/mrunit -->
+        <dependency>
+            <groupId>org.apache.mrunit</groupId>
+            <artifactId>mrunit</artifactId>
+            <version>1.0.0</version>
+            <classifier>hadoop2</classifier>
+        </dependency>
+
+
     </dependencies>
 
 </project>
